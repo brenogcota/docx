@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head'); %>
+</head>
+
+<body>
+
+    <a href="/" class="d-block px-3 py-2 text-center text-bold text-white bg-dark">There's a newer version of Docx!</a>
+
+    <header>
+        <%- include('./partials/header'); %>
+    </header>
+
+    <div class="m-3">
+        <div class="row">
+          <div class="col r-divider">
+            <h5>Table of contents</h5>
+
+            <strong>Introduction</strong>
+            <p> <a class="text-black-50" href="#">How it works</a></p>
+            <p> <a class="text-black-50" href="#">understand behind the scenes</a></p>
+            <strong>Quick start</strong>
+            <p> <a class="text-black-50" href="#">First steps</a></p>
+            <strong>Set up you dev enviroment</strong>
+            <p> <a class="text-black-50" href="#">Install cli</a></p>
+            <p> <a class="text-black-50" href="#">Choose text editor</a></p>
+          </div>
+          <div class="col-8">
+            <main>
+                <div>
+                    <h1>Introduction</h1>
+                    <p>A Description of section Introduction, basically is it</p>
+
+                    <h2 id="quick-start">Quick start</h2>
+                    <p>Looking to quickly add Bootstrap to your project? Use BootstrapCDN, provided for free by the folks at StackPath. Using a package manager or need to download the source files? Head to the downloads page.</p>
+
+                    <h2 id="starter">Starter template</h2>
+                    <p>
+                        Be sure to have your pages set up with the latest design and development standards. That means using an HTML5 doctype and including a viewport meta tag for proper responsive behaviors. Put it all together and your pages should look like this:
+                    </p>
+
+                    <h2 id="community">Community</h2>
+                    <p>Stay up to date on the development of Bootstrap and reach out to the community with these helpful resources.</p>
+
+                    <ul>
+                        <li>Follow <a href="https://twitter.com/getbootstrap">@getbootstrap on Twitter</a>.</li>
+                        <li>Read and subscribe to <a href="https://blog.getbootstrap.com/">The Official Bootstrap Blog</a>.</li>
+                        <li>Join <a href="https://bootstrap-slack.herokuapp.com/">the official Slack room</a>.</li>
+                        <li>Chat with fellow Bootstrappers in IRC. On the <code class="highlighter-rouge">irc.freenode.net</code> server, in the <code class="highlighter-rouge">##bootstrap</code> channel.</li>
+                        <li>Implementation help may be found at Stack Overflow (tagged <a href="https://stackoverflow.com/questions/tagged/bootstrap-4"><code class="highlighter-rouge">bootstrap-4</code></a>).</li>
+                        <li>Developers should use the keyword <code class="highlighter-rouge">bootstrap</code> on packages which modify or add to the functionality of Bootstrap when distributing through <a href="https://www.npmjs.com/search?q=keywords:bootstrap">npm</a> or similar delivery mechanisms for maximum discoverability.</li>
+                    </ul>
+                </div>
+            </main>
+          </div>
+          <div class="col l-divider">
+            <p class="mb-1"><a href="#quick-start">Quick start</a></p>
+            <p class="mb-1"><a href="#starter">Starter template</a></p>
+            <p class="mb-1"><a href="#community">Community</a></p>
+          </div>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('./partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

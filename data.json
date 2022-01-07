@@ -1,0 +1,12 @@
+{
+    "accounts": [
+        {
+            "account_name": "Company one",
+            "domain": "domain"
+        },
+        {
+            "account_name": "Company two",
+            "domain": "example"
+        }
+    ]
+}
