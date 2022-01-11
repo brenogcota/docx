@@ -1,14 +1,21 @@
 const express = require("express")
-const check_host = require("./middlewares")
+const docs = require("./util");
+const { appConfig } = require("./middlewares")
 
 const app = express()
 
 app.set('view engine', 'ejs');
 
-app.use(check_host)
+app.use(appConfig)
 
-app.get('/', (req, res) => {
-    res.render('index')
+app.get('/_json/docs', async (req, res) => {
+    const data = await docs('docs')
+    res.json(data)
+})
+
+app.get('/', async (req, res) => {
+    const data = await docs('docs')
+    res.render('index', { ...data, ...req.appConfig, ...req.messages })
 })
 
 app.listen(3000, function() {

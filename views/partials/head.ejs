@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<title>Docx</title>
+<title><%- page_title %></title>
 
 <!-- CSS (load bootstrap from a CDN) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,5 +10,11 @@
     }
     .l-divider {
         border-left: 1px solid rgb(240, 240, 240);
+    }
+    .bd-toc {
+        position: sticky;
+        top: 4rem;
+        height: calc(100vh - 8rem);
+        overflow-y: auto;
     }
 </style>
