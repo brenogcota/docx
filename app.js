@@ -1,5 +1,5 @@
 const express = require("express")
-const docs = require("./util");
+const { docs } = require("./util");
 const { appConfig } = require("./middlewares")
 
 const app = express()
@@ -15,6 +15,12 @@ app.get('/_json/docs', async (req, res) => {
 
 app.get('/', async (req, res) => {
     const data = await docs('docs')
+    res.render('index', { ...data, ...req.appConfig, ...req.messages })
+})
+
+app.get('/:slug', async (req, res) => {
+    const { slug } = req.params
+    const data = await docs('docs', slug)
     res.render('index', { ...data, ...req.appConfig, ...req.messages })
 })
 

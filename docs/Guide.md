@@ -1,6 +1,6 @@
-<p class="order d-none">0</p>
+<p class="order d-none">2</p>
 
-## Introduction 
+## Guide
 A Description of section Introduction, basically is it
 
 ## Quick start

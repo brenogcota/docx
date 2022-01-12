@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col r-divider vh-100 overflow-auto">
             <% filenames.forEach(function(filename) { %>
-                <p> <a class="text-black-50" href="#"><%= filename %></a></p>
+                <p> <a class="text-black-50" href="/<%= filename %>"><%= filename %></a></p>
             <% }); %>
           </div>
           <div class="col-8">
@@ -26,8 +26,8 @@
                     <div><%- main.content %></div>
     
                     <div class="d-flex justify-content-between align-items-center px-3">
-                        <a class="btn btn btn-outline-secondary" href="#" role="button">Previous</button>
-                        <a class="btn btn-outline-primary" href="#" role="button">Next</a>
+                        <a class="btn btn btn-outline-secondary" href="/<%= prev %>" role="button">Previous</button>
+                        <a class="btn btn-outline-primary" href="/<%= next %>" role="button">Next</a>
                     </div>
                 <% } else{ %>  
                     <h1>Welcome!</h1>
@@ -37,7 +37,7 @@
           </div>
           <div class="bd-toc col l-divider">
             <% main.table_of_contents.forEach(function(name) { %>
-                <p class="mb-1"><a class="text-black-50" href="#<%= name %>"><%= name %></a></p>
+                <p class="mb-1"><a class="text-black-50" href="#/<%= name %>"><%= name %></a></p>
             <% }); %>
           </div>
         </div>

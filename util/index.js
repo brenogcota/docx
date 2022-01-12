@@ -1,6 +1,26 @@
 const fs = require("fs/promises")
 const showdown  = require('showdown')
 
+function compare(a, b, prop = 'order') {
+    if ( a[prop] < b[prop] ){
+      return -1;
+    }
+    if ( a[prop] > b[prop] ){
+      return 1;
+    }
+    return 0;
+}
+
+function sort(filenames, files) {
+    const items = filenames.map((item, index) => ({
+        order: files[index][item] ? files[index][item].order : 0,
+        item
+    }))
+
+    let sorted = items.sort(compare)
+    return sorted.map(({ item }) => item)
+}
+
 function removeExt(filename) {
     return filename.split('.md')[0]
 }
@@ -25,6 +45,11 @@ function slugfy (str) {
     return str;
 }
 
+function getOrder(str){
+    let matcher = /<p class=\"order d-none\">(.*?)<\/p>/
+    return Number(str.match(matcher) && str.match(matcher)[1])
+}
+
 function getTableOfContents(text) {
     let headerMatch = /^#+(.*)$/;
     let lines = text.split("\n");
@@ -43,7 +68,7 @@ function getTableOfContents(text) {
 
 async function readFiles(dirname) {
     let filenames = await fs.readdir(dirname)
-    const files = []
+    let files = []
 
     converter = new showdown.Converter(),
    
@@ -52,16 +77,26 @@ async function readFiles(dirname) {
         files.push({ 
             [unSlugfy(filename)]: {
               'content':  converter.makeHtml(file),
-              'table_of_contents': getTableOfContents(file)
+              'table_of_contents': getTableOfContents(file),
+              'order': getOrder(file)
             }
         })
     }));
 
-    filenames = filenames.map(unSlugfy)
+    filenames = sort(filenames.map(unSlugfy), files)
 
     return { filenames, files, main: files[0][filenames[0]] }
 }
 
-module.exports = function getDocuments(dirname) {
-    return readFiles(dirname)
+module.exports.docs = async function(dirname, current = '') {
+    current = unSlugfy(current)
+    let { filenames, files, main } = await readFiles(dirname)
+    let file = files.find(item => item[current] !== undefined)
+    let index = filenames.findIndex(item => item == current)
+    let next = filenames[index+1]
+    let prev = filenames[index-1]
+
+    if(!!current && file) main = file[current]
+
+    return { filenames, files, main, ...{ next, prev } }
 }
